@@ -1,14 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import DecksView from './components/DecksView'
+import {Provider} from 'react-redux'
+import {createStore} from 'redux'
+import reducer from './reducers'
+import middleware from './middleware'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+class App extends React.Component {
+  render() {
+    const store = createStore(reducer, middleware)
+    return (
+      <Provider store={store}>
+        <View style={styles.container}>
+          <DecksView />
+          <StatusBar style="auto" />
+        </View>
+      </Provider>
+      
+    );
+  }  
 }
 
 const styles = StyleSheet.create({
@@ -19,3 +30,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App
