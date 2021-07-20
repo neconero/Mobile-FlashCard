@@ -2,16 +2,15 @@ import React, { Component} from 'react'
 import { View, TouchableOpacity} from 'react-native'
 import {handleInitialData} from '../actions'
 import {connect} from 'react-redux'
-import {getData} from '../utils/api'
 import Deck from './Deck'
 
-export class DecksView extends Component {
+export class DeckList extends Component {
     componentDidMount() {
         this.props.dispatch(handleInitialData())
     }
+    
     render() {
         const {decks} = this.props
-        console.log(this.props.decks)
 
         return (
             <View>
@@ -19,7 +18,13 @@ export class DecksView extends Component {
                     const {title, questions} = decks[deck]
                     //console.log(title)
                     return (
-                        <TouchableOpacity key={deck}>
+                        <TouchableOpacity 
+                            key={deck}
+                            onPress={ () => {
+                                const {navigation} = this.props
+                                navigation.navigate('DeckView', {deck})
+                            }}
+                        >
                             <Deck 
                                 title={title}
                                 cardCount={questions ? questions.length : 0}
@@ -39,4 +44,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(DecksView) 
+export default connect(mapStateToProps)(DeckList) 
