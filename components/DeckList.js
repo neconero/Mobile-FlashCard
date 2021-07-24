@@ -10,7 +10,7 @@ export class DeckList extends Component {
     }
     
     render() {
-        const {decks} = this.props
+        const {decks, navigation} = this.props
 
         return (
             <View>
@@ -21,8 +21,7 @@ export class DeckList extends Component {
                         <TouchableOpacity 
                             key={deck}
                             onPress={ () => {
-                                const {navigation} = this.props
-                                navigation.navigate('DeckView', {deck})
+                                navigation.navigate('DeckView', {title: deck})
                             }}
                         >
                             <Deck 

@@ -13,7 +13,8 @@ class DeckView extends React.Component {
     }
     render() {
         const {title, questions} = this.props
-        console.log(title)
+        // let questions = decks[title].questions
+        
         return (
             <View>
                 <Text>{title}</Text>
@@ -23,12 +24,16 @@ class DeckView extends React.Component {
     }
 }
 
-const mapStateToProps = ({decks}, {route}) => {
-    const {deckTitle} = route.params
+//&& state.decks[deckTitle].questions
+
+const mapStateToProps = (state, ownProps) => {
+    const title = ownProps.route.params ? ownProps.route.params.title : null
+
+    
 
     return{
-        title: deckTitle,
-        questions: decks[deckTitle].questions
+        title: title,
+        questions: state && state.decks && state.decks[title].questions
     }
 }
 
