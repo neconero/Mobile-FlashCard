@@ -8,13 +8,37 @@ const DECK_STORAGE_KEY = 'MobileFlashcards: deck'
 
 
 export async function getDecks(){
-  const results = await AsyncStorage.getItem(DECK_STORAGE_KEY)
-  const decks = await _getDecks()
 
-  if(results === null){
-    AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(decks))
-    return decks
-  }else{
-    return JSON.parse(results)
+  try {
+    const results = await AsyncStorage.getItem(DECK_STORAGE_KEY)
+    const decks = await _getDecks()
+
+    if(results === null){
+      AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(decks))
+      return decks
+    }else{
+      return JSON.parse(results)
+    }
+    } catch (error) {
+    console.log(error)
+  }
+  
+}
+
+export async function addCardToDeck(title, card){
+  try {
+    const results = await AsyncStorage.getItem(DECK_STORAGE_KEY)
+    const decks = JSON.parse(results)
+
+    const cardToDeck = {
+        ...decks,
+        [title]: {
+          questions: decks[title].questions.concat(card)
+        }
+    }
+
+    await AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(cardToDeck))
+  } catch (error) {
+    console.log(error)
   }
 }

@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native'
 import ScreenStackNavigator from './navigation/ScreenStack'
 import {Provider} from 'react-redux'
+import {Provider as PaperProvider} from 'react-native-paper'
 import {createStore} from 'redux'
 import reducer from './reducers'
 import middleware from './middleware'
@@ -13,13 +14,11 @@ class App extends React.Component {
     const store = createStore(reducer, middleware)
     return (
       <Provider store={store}>
-        <NavigationContainer>
-          <ScreenStackNavigator />
-        </NavigationContainer>
-        <View style={styles.container}>
-          
-          <StatusBar style="auto" />
-        </View>
+        <PaperProvider>
+          <NavigationContainer>
+            <ScreenStackNavigator />
+          </NavigationContainer>
+        </PaperProvider>
       </Provider>
       
     );

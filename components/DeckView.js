@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { Text, View } from 'react-native'
+import { Text, View, TouchableOpacity } from 'react-native'
 
 class DeckView extends React.Component {
+    
     handleCardAddition = () => {
         const {title, navigation} = this.props
         navigation.navigate('AddCard', {title})
@@ -19,6 +20,11 @@ class DeckView extends React.Component {
             <View>
                 <Text>{title}</Text>
                 <Text>{questions.length}</Text>
+                <TouchableOpacity
+                    onPress={this.handleCardAddition}
+                >
+                    <Text>Add Card</Text>
+                </TouchableOpacity>
             </View>
         )
     }

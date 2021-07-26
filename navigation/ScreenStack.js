@@ -2,6 +2,7 @@ import React from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
 import DeckView from '../components/DeckView'
 import DeckList from '../components/DeckList'
+import AddCard from '../components/AddCard'
 
 const screenStack = createStackNavigator()
 
@@ -17,6 +18,11 @@ const ScreenStackNavigator = () => {
                 name='DeckView'
                 component={DeckView}
                 options={{title: 'DeckView'}}
+            />
+            <screenStack.Screen 
+                name='AddCard'
+                component={AddCard}
+                options={{title: 'AddCard'}}
             />
         </screenStack.Navigator>
     )
