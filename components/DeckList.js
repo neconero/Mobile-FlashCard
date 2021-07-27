@@ -1,8 +1,9 @@
 import React, { Component} from 'react'
-import { View, TouchableOpacity} from 'react-native'
+import { ScrollView, TouchableOpacity, Text} from 'react-native'
 import {handleInitialData} from '../actions'
 import {connect} from 'react-redux'
 import Deck from './Deck'
+import {appStyles} from '../utils/colours'
 
 export class DeckList extends Component {
     componentDidMount() {
@@ -13,25 +14,28 @@ export class DeckList extends Component {
         const {decks, navigation} = this.props
 
         return (
-            <View>
+            <ScrollView style={appStyles.scrollContainer}>
+                <Text style={appStyles.title}>Flashcards</Text>
                 {decks && Object.keys(decks).map((deck) => {
                     const {title, questions} = decks[deck]
-                    //console.log(title)
+                    
                     return (
-                        <TouchableOpacity 
-                            key={deck}
-                            onPress={ () => {
-                                navigation.navigate('DeckView', {title: deck})
-                            }}
-                        >
-                            <Deck 
-                                title={title}
-                                cardCount={questions ? questions.length : 0}
-                            />
-                        </TouchableOpacity>
+                        
+                            <TouchableOpacity 
+                                key={deck}
+                                onPress={ () => {
+                                    navigation.navigate('DeckView', {title: deck})
+                                }}
+                            >
+                                <Deck 
+                                    title={title}
+                                    cardCount={questions ? questions.length : 0}
+                                />
+                            </TouchableOpacity>
+                         
                     )
                 })}
-            </View>
+            </ScrollView> 
         )
     }
 }
