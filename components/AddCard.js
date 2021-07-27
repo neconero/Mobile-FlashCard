@@ -28,9 +28,9 @@ class AddCard extends React.Component {
 
         dispatch(handleAddCardToDeck(title, newCard))
 
-        this.setState({answer: '', question: ''})
-
         navigation.navigate('DeckView', {title})
+
+        this.setState({answer: '', question: ''})
     }
 
     render() {
