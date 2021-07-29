@@ -1,5 +1,6 @@
 import React from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
+import {TabNavigator} from './BottomTab'
 import DeckView from '../components/DeckView'
 import DeckList from '../components/DeckList'
 import AddCard from '../components/AddCard'
@@ -9,11 +10,7 @@ const screenStack = createStackNavigator()
 const ScreenStackNavigator = () => {
     return(
         <screenStack.Navigator>
-            <screenStack.Screen 
-                name='Decks'
-                component={DeckList}
-                options={{title: 'Decks'}}
-            />
+            <screenStack.Screen {...TabNavigator}/>
             <screenStack.Screen 
                 name='DeckView'
                 component={DeckView}
