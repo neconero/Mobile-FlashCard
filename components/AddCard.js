@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { KeyboardAvoidingView} from 'react-native'
+import {addCard} from '../actions/index'
+import {addCardToDeck} from '../utils/api'
 import {TextInput, Button} from 'react-native-paper'
 
 class AddCard extends React.Component {
@@ -21,12 +23,16 @@ class AddCard extends React.Component {
         const { title, dispatch, navigation } = this.props
         const {question, answer} = this.state
 
-        const newCard = {
+        const card = {
             question,
             answer
         }
 
-        dispatch(handleAddCardToDeck(title, newCard))
+        //Update redux
+        dispatch(addCard(title, card))
+
+        //storage
+        addCardToDeck(title, card)
 
         navigation.navigate('DeckView', {title})
 

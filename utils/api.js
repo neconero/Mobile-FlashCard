@@ -12,6 +12,7 @@ export async function getDecks(){
   try {
     const results = await AsyncStorage.getItem(DECK_STORAGE_KEY)
     const decks = await _getDecks()
+    // await AsyncStorage.clear()
 
     if(results === null){
       AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(decks))
@@ -27,17 +28,18 @@ export async function getDecks(){
 
 export async function addCardToDeck(title, card){
   try {
-    const results = await AsyncStorage.getItem(DECK_STORAGE_KEY)
-    const decks = JSON.parse(results)
+    
+    const decks = getDecks()
 
     const cardToDeck = {
         ...decks,
         [title]: {
-          questions: decks[title].questions.concat(card)
+          questions: decks && decks[title].questions.concat([card])
         }
     }
-
-    await AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(cardToDeck))
+    console.log(cardToDeck, 'really')
+    await AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(cardToDeck))
+    
   } catch (error) {
     console.log(error)
   }

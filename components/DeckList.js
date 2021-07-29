@@ -1,5 +1,6 @@
 import React, { Component} from 'react'
 import { ScrollView, TouchableOpacity, Text} from 'react-native'
+import {Card} from 'react-native-paper'
 import {handleInitialData} from '../actions'
 import {connect} from 'react-redux'
 import Deck from './Deck'
@@ -27,10 +28,12 @@ export class DeckList extends Component {
                                     navigation.navigate('DeckView', {title: deck})
                                 }}
                             >
-                                <Deck 
-                                    title={title}
-                                    cardCount={questions ? questions.length : 0}
-                                />
+                                <Card style={appStyles.card}>
+                                    <Deck 
+                                        title={title}
+                                        cardCount={questions ? questions.length : 0}
+                                    />
+                                </Card>
                             </TouchableOpacity>
                          
                     )
