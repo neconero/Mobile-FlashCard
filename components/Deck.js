@@ -6,8 +6,8 @@ export default function Deck(props) {
 
     return(
         <View style={{flex: 1, padding: 70}}>
-            <Text>{title}</Text>
-            <Text>{cardCount}</Text>
+            <Text style={{flex: 1}}>{title}</Text>
+            <Text>{cardCount} card(s)</Text>
         </View>
     )
 }
