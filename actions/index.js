@@ -4,12 +4,7 @@ export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const ADD_DECK = 'ADD_DECK'
 export const ADD_CARD = 'ADD_CARD'
 
-export function addDeck(deck) {
-    return{
-        type: ADD_DECK,
-        deck
-    }
-}
+
 
 export function receiveDecks(decks) {
     return{
@@ -36,11 +31,10 @@ export function addCard(title, card) {
     }
 }
 
-export function handleAddCardToDeck(title, card) {
-    return (dispatch) => {
-        addCardToDeck(title, card)
-            .then((deck) => {
-                dispatch(addCard(deck))
-            })
+export function addDeck(deckTitle, id) {
+    return{
+        type:  ADD_DECK,
+        title: deckTitle,
+        id,
     }
 }

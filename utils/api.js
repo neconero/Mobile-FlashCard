@@ -3,10 +3,6 @@ import {_getDecks} from './_DATA.js'
 
 const DECK_STORAGE_KEY = 'MobileFlashcards: deck'
 
-
-
-
-
 export async function getDecks(){
 
   try {
@@ -41,6 +37,20 @@ export async function addCardToDeck(title, card){
     await AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(cardToDeck))
     
   } catch (error) {
+    console.log(error)
+  }
+}
+
+export async function addNewDeck(deckTitle, id){
+  try{
+    const newDeck = {
+      [id]: {
+        title: deckTitle,
+        questions: [],
+      }
+    }
+    await AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(newDeck))
+  }catch (error) {
     console.log(error)
   }
 }

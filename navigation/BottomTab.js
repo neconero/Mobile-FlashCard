@@ -8,7 +8,9 @@ const Tabs = createBottomTabNavigator()
 
 const TabNavigator = () => {
     return(
-        <Tabs.Navigator>
+        <Tabs.Navigator
+            initialRouteName='Decks'
+        >
             <Tabs.Screen
                 name='Decks'
                 component={DeckList}

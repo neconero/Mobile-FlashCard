@@ -13,6 +13,7 @@ const ScreenStackNavigator = () => {
             <screenStack.Screen 
                 name='Home'
                 component={TabNavigator}
+                
             />
             <screenStack.Screen 
                 name='DeckView'
