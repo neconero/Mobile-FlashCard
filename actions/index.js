@@ -1,4 +1,4 @@
-import {getDecks, addCardToDeck} from '../utils/api'
+import {getDecks, addCardToDeck, addNewDeck} from '../utils/api'
 
 export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const ADD_DECK = 'ADD_DECK'
@@ -31,10 +31,21 @@ export function addCard(title, card) {
     }
 }
 
+
 export function addDeck(deckTitle, id) {
     return{
         type:  ADD_DECK,
         title: deckTitle,
         id,
+    }
+}
+
+export function handleNewDeck(deckTitle){
+    let id = deckTitle
+    return (dispatch) => {
+        return addNewDeck(deckTitle, id) 
+        .then(() => {
+            dispatch(addDeck(deckTitle, id))
+        })
     }
 }

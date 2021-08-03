@@ -18,8 +18,8 @@ class DeckView extends React.Component {
         
         return (
             <View>
-                <Text>{title}</Text>
-                <Text>{questions.length}</Text>
+                {title && <Text>{title}</Text>}
+                {questions && <Text>{questions.length}</Text>}
                 <TouchableOpacity
                     onPress={this.handleCardAddition}
                 >
@@ -34,12 +34,12 @@ class DeckView extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     const title = ownProps.route.params ? ownProps.route.params.title : null
-
-    
+    const decks = state ? state.decks : null
+   
 
     return{
         title: title,
-        questions: state && state.decks && state.decks[title].questions
+        questions: decks && decks[title].questions
     }
 }
 
