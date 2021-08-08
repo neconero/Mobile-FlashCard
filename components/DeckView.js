@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { Text, View, TouchableOpacity } from 'react-native'
+import {Button} from 'react-native-paper'
 
 class DeckView extends React.Component {
     
@@ -10,7 +11,7 @@ class DeckView extends React.Component {
     }
     startQuiz = () => {
         const {title, navigation} = this.props
-        navigation.navigate('Quiz', {title})
+        navigation.navigate('QuizView', {title})
     }
     render() {
         const {title, questions} = this.props
@@ -25,6 +26,11 @@ class DeckView extends React.Component {
                 >
                     <Text>Add Card</Text>
                 </TouchableOpacity>
+                <Button
+                    onpress={this.startQuiz}
+                >
+                    Start Quiz
+                </Button>
             </View>
         )
     }

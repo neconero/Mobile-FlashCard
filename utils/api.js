@@ -54,3 +54,13 @@ export async function addNewDeck(deckTitle, id){
     console.log(error)
   }
 }
+
+export async function removeDeck(deckID){
+  try{
+    
+    await AsyncStorage.removeItem(deckID)
+
+  }catch(error){
+    console.log(error)
+  }
+}
