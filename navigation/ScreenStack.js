@@ -26,7 +26,7 @@ const ScreenStackNavigator = () => {
                 options={{title: 'AddCard'}}
             />
             <screenStack.Screen 
-                name='Quiz'
+                name='QuizView'
                 component={QuizView}
                 options={{title: 'Quiz'}}
             />
