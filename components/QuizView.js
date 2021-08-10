@@ -2,12 +2,12 @@ import React from 'react'
 import {View, Text} from 'react-native'
 import {Button} from 'react-native-paper'
 import {connect} from 'react-redux'
-//import QuizCard from './QuizCard'
+import QuizCard from './QuizCard'
+import Reset from './Reset'
 
 class QuizView extends React.Component {
     state ={
         cardIndex: 0,
-        score: 0,
         correct: 0,
         incorrect: 0,
         showAnswer: false,
@@ -24,14 +24,14 @@ class QuizView extends React.Component {
     }
 
     selectedAnswer = (choice) => {
-        let {correct, incorrect, length} = this.state
+        let {correct, incorrect, length, cardIndex} = this.state
         if(choice === 'incorrect') {
             this.setState( {
-                correct: correct + 1,
+                incorrect: incorrect + 1,
             })
         }else{
             this.setState( {
-                incorrect: incorrect + 1,
+                correct: correct + 1,
             })
         }
 
@@ -47,11 +47,19 @@ class QuizView extends React.Component {
         }
     }
     
+    handleReset = () => {
+        this.setState( {
+            cardIndex: 0,
+            completed: false,
+            correct: 0,
+            incorrect: 0,
+        })
+    }
 
     render() {
-        const {length} = this.state
+        const {length, incorrect, correct, cardIndex, showAnswer, completed} = this.state
         const {title} = this.props
-        console.log(length)
+        
         if(length === 0){
             return(
                 <View>
@@ -60,12 +68,29 @@ class QuizView extends React.Component {
                     <Button onPress={this.addCard}>Add Card</Button> 
                 </View>
             )
+        }else if(!completed) {
+            return(
+                <QuizCard
+
+                    cardIndex={cardIndex}
+                    questionLength={length}
+                    showAnswer={showAnswer}
+                    answer={this.selectedAnswer}
+                    id={title}
+                />
+            )
+        }else{
+            return(
+                <Reset
+
+                    length={length}
+                    correct={correct}
+                    goBack={this.goBack}
+                    resetQuiz={this.handleReset}
+                />
+            )
         }
-        return(
-            <View>
-                <Text>{this.state.length}</Text>
-            </View>
-        )
+        
     }
 }
 
