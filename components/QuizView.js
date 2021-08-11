@@ -75,7 +75,7 @@ class QuizView extends React.Component {
                     cardIndex={cardIndex}
                     questionLength={length}
                     showAnswer={showAnswer}
-                    answer={this.selectedAnswer}
+                    onAnswer={this.selectedAnswer}
                     id={title}
                 />
             )

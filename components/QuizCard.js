@@ -6,28 +6,29 @@ import {connect} from 'react-redux'
 
 class QuizCard extends React.Component{
     render(){
-        const {decks, cardIndex, questionLength, answer, id} = this.props
+        const {decks, cardIndex, questionLength, onAnswer, id} = this.props
+        const {question, answer} = decks[id].questions[cardIndex]
         return(
             <View style={{flex: 1, padding: 70}}>
                 <Text>Number {cardIndex + 1} Card out {questionLength}</Text>
                 <FlipCard>
                     <View>
-                        <Text>{decks[id].questions[cardIndex].question}</Text>
+                        <Text>{question}</Text>
                     </View>
                     <View>
-                        <Text>{decks[id].questions[cardIndex].answer}</Text>
+                        <Text>{answer}</Text>
                     </View>
                 </FlipCard>
                 <Button
                     onPress={() => 
-                        answer('correct')
+                        onAnswer('correct')
                     }
                 >
                     Correct
                 </Button>
                 <Button
                     onPress={() => 
-                        answer('incorrect')
+                        onAnswer('incorrect')
                     }
                 >
                     Incorrect
