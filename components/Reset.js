@@ -1,28 +1,47 @@
 import React from 'react'
-import {Text} from 'react-native'
+import {Text, View} from 'react-native'
 import {Button} from 'react-native-paper'
+import {connect} from 'react-redux'
 
-function Reset({props}) {
-    return(
-        <View>
-            <Text>Results</Text>
-            <Text>You have achieved {props.correct} out of {props.length}</Text>
-            <Button
-                onPress={() => 
-                    props.resetQuiz()
-                }
-            >
-                Reset Quiz
-            </Button>
-            <Button
-                onPress={() => 
-                    props.goBack()
-                }
-            >
-                Back
-            </Button>
-        </View>
-    )
+// function Reset(props) {
+//     return(
+        
+//     )
+// }
+class Reset extends React.Component {
+    render() {
+        const {correct, length, resetQuiz, goBack} = this.props
+        return (
+            <View>
+                <Text>Results</Text>
+               
+                <Text>You have achieved {correct}</Text>
+                <Button
+                    onPress={() => 
+                        resetQuiz()
+                    }
+                >
+                    Reset Quiz
+                </Button>
+                <Button
+                    onPress={() => 
+                        goBack()
+                    }
+                >
+                    Back
+                </Button>
+            </View>
+        )
+    }
 }
 
-export default Reset
+const mapStateToProps = (state, {correct, length, resetQuiz, goBack}) => {
+    return{
+        correct,
+        length,
+        resetQuiz,
+        goBack,
+    }
+}
+
+export default connect(mapStateToProps)(Reset)
