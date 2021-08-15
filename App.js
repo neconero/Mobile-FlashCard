@@ -8,8 +8,12 @@ import {Provider as PaperProvider} from 'react-native-paper'
 import {createStore} from 'redux'
 import reducer from './reducers'
 import middleware from './middleware'
+import {setLocalNotification} from './utils/helpers'
 
 class App extends React.Component {
+  componentDidMount(){
+    setLocalNotification()
+  }
   render() {
     const store = createStore(reducer, middleware)
     return (
