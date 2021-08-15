@@ -4,6 +4,7 @@ import TabNavigator from './BottomTab'
 import DeckView from '../components/DeckView'
 import QuizView from '../components/QuizView'
 import AddCard from '../components/AddCard'
+import {purple} from '../utils/colours'
 
 const screenStack = createStackNavigator()
 
@@ -18,7 +19,16 @@ const ScreenStackNavigator = () => {
             <screenStack.Screen 
                 name='DeckView'
                 component={DeckView}
-                options={{title: 'DeckView'}}
+                options={({route}) => ({
+                    title: route.params.title,
+                    headerStyle: {
+                        backgroundColor: purple,
+                      },
+                      headerTintColor: '#fff',
+                      headerTitleStyle: {
+                        fontWeight: 'bold',
+                      },
+                })}
             />
             <screenStack.Screen 
                 name='AddCard'
