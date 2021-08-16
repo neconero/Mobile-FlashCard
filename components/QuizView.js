@@ -1,17 +1,12 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import {View, Text} from 'react-native'
 import {Button} from 'react-native-paper'
 import {connect} from 'react-redux'
-import {lavender} from '../utils/colours'
+
 import QuizCard from './QuizCard'
 import Reset from './Reset'
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: lavender
-    }
-})
+
 
 class QuizView extends React.Component {
     state ={
@@ -64,6 +59,12 @@ class QuizView extends React.Component {
         })
     }
 
+    handleBack = () => {
+        const {navigation, title} = this.props
+
+        navigation.navigate('DeckView', {title})
+    }
+
     render() {
         const {length, incorrect, correct, cardIndex, showAnswer, completed} = this.state
         const {title} = this.props
@@ -93,7 +94,7 @@ class QuizView extends React.Component {
 
                     length={length}
                     correct={correct}
-                    goBack={this.goBack}
+                    goBack={this.handleBack}
                     resetQuiz={this.handleReset}
                 />
             )
