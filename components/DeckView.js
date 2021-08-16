@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { Text, View, TouchableOpacity, StyleSheet, Platform, Pressable } from 'react-native'
-//import {clearLocalNotification, setLocalNotification} from '../utils/helpers'
+import {clearLocalNotification, setLocalNotification} from '../utils/helpers'
 import {white, black, lavender} from '../utils/colours'
 
 const styles = StyleSheet.create({
@@ -84,8 +84,8 @@ class DeckView extends React.Component {
     startQuiz = () => {
         const {title, navigation} = this.props
 
-        // clearLocalNotification()
-        //     .then(setLocalNotification)
+        clearLocalNotification()
+            .then(setLocalNotification)
 
         navigation.navigate('QuizView', {title})
         
