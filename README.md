@@ -6,13 +6,13 @@ The mobile app enables user to select a deck from the list of decks. User can ad
 
 In the project directory, you can run:
 
-## [yarn start](yarn start)
+### `yarn start`
 
 Runs the app in the development mode(expo CLI).
 Open expo app on phone device to view snack.
 
 
-## [yarn test](yarn test)
+### `yarn test`
 
 Launches the test runner in the interactive watch mode.
 See the section about running tests for more information.
