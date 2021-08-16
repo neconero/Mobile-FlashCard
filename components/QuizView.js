@@ -1,12 +1,34 @@
 import React from 'react'
-import {View, Text} from 'react-native'
-import {Button} from 'react-native-paper'
+import {View, Text, StyleSheet, Pressable} from 'react-native'
 import {connect} from 'react-redux'
-
+import {lavender, white, black} from '../utils/colours'
 import QuizCard from './QuizCard'
 import Reset from './Reset'
 
-
+const styles = StyleSheet.create({
+    noCardContainer: {
+        flex: 1,
+        backgroundColor: lavender,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    iosButton:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        borderRadius: 4,
+        elevation: 3,
+        marginVertical: 10,
+    },
+    textBtn:{
+        color: white,
+        fontSize: 16,
+        lineHeight: 21,
+        textAlign: 'center',
+        fontWeight: 'bold',  
+    },
+})
 
 class QuizView extends React.Component {
     state ={
@@ -58,15 +80,28 @@ class QuizView extends React.Component {
     }
 
     render() {
-        const {length, incorrect, correct, cardIndex, showAnswer, completed} = this.state
+        const {length, correct, cardIndex, showAnswer, completed} = this.state
         const {title} = this.props
         
         if(length === 0){
             return(
-                <View>
-                    <Text>{title}</Text>
-                    <Text>This deck has no Card. Please add a card!</Text>
-                    <Button onPress={this.addCard}>Add Card</Button> 
+                <View style={styles.noCardContainer}>
+                    <View>
+                        <Text style={{textAlign:'center'}}>{title}</Text>
+                        <Text>This deck has no Card. Please add a card!</Text>
+                    </View>
+                    <View>
+                        <Pressable
+                            onPress={this.addCard}
+                            style={[styles.iosButton, {backgroundColor: black}]}
+                        >
+                            <Text
+                                style={styles.textBtn}
+                            >
+                                Add Card
+                            </Text>
+                        </Pressable>
+                    </View> 
                 </View>
             )
         }else if(!completed) {

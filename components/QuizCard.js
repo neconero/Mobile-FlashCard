@@ -1,8 +1,7 @@
 import React from 'react'
-import { Text, View, StyleSheet } from 'react-native'
-import {Button} from 'react-native-paper'
+import { Text, View, StyleSheet, Pressable } from 'react-native'
 import FlipCard from 'react-native-flip-card'
-import {lavender, black, orange} from '../utils/colours'
+import {lavender, black, orange, white} from '../utils/colours'
 import {connect} from 'react-redux'
 
 const styles = StyleSheet.create({
@@ -30,6 +29,22 @@ const styles = StyleSheet.create({
         width: 220,
         justifyContent: 'center'
     },
+    iosButton:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        borderRadius: 4,
+        elevation: 3,
+        marginVertical: 10,
+    },
+    textBtn:{
+        color: white,
+        fontSize: 16,
+        lineHeight: 21,
+        textAlign: 'center',
+        fontWeight: 'bold',  
+    },
 })
 
 class QuizCard extends React.Component{
@@ -47,20 +62,32 @@ class QuizCard extends React.Component{
                         <Text style={styles.text}>{answer}</Text>
                     </View>
                 </FlipCard>
-                <Button
-                    onPress={() => 
-                        onAnswer('correct')
-                    }
-                >
-                    Correct
-                </Button>
-                <Button
-                    onPress={() => 
-                        onAnswer('incorrect')
-                    }
-                >
-                    Incorrect
-                </Button>
+                <View style={{alignSelf: 'center'}}>
+                        <Pressable
+                            onPress={() => 
+                                onAnswer('correct')
+                            }
+                            style={[styles.iosButton, {backgroundColor: black}]}
+                        >
+                            <Text
+                                style={styles.textBtn}
+                            >
+                                Correct
+                            </Text>
+                        </Pressable>
+                        <Pressable
+                            onPress={() => 
+                                onAnswer('incorrect')
+                            }
+                            style={[styles.iosButton, {backgroundColor: black}]}
+                        >
+                            <Text
+                                style={styles.textBtn}
+                            >
+                                Incorrect
+                            </Text>
+                        </Pressable>
+                </View>
             </View>
         )
     }

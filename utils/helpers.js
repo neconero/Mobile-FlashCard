@@ -1,18 +1,18 @@
 import React from 'react'
 import AsyncStorage  from '@react-native-async-storage/async-storage'
-import { Notifications, Permissions } from 'expo'
+import * as Notifications from 'expo-notifications'
 
 const NOTIFICATION_KEY = 'MobileFlashcards: notifications'
 
-export function getDailyReminderValue(){
-    return{
-        today: "👋🏿 don't forget to complete quiz today!"
-    }
-}
+// export function getDailyReminderValue(){
+//     return{
+//         today: "👋🏿 don't forget to complete quiz today!"
+//     }
+// }
 
 export function clearLocalNotification(){
     return AsyncStorage.removeItem(NOTIFICATION_KEY)
-        .then(Notifications.cancelAllScheduledNotificationAsync)
+        .then(Notifications.cancelAllScheduledNotificationsAsync)
 }
 
 function createNotification(){
@@ -36,7 +36,7 @@ export function setLocalNotification(){
         .then(JSON.parse)
         .then( data => {
             if(data === null){
-                Permissions.async(Permissions.NOTIFICATIONS)
+                Notifications.requestPermissionsAsync()
                     .then(({status}) => {
                         if(status === 'granted'){
                             Notifications.cancelAllScheduledNotificationsAsync()
@@ -46,13 +46,13 @@ export function setLocalNotification(){
                             tomorrow.setHours(15)
                             tomorrow.setMinutes(0)
 
-                            Notifications.scheduledNotificationsAsync(
-                                createNotification(),
-                                {
+                            Notifications.scheduleNotificationAsync({
+                                content: createNotification(), 
+                                trigger: {
                                     time: tomorrow,
                                     repeat: 'day'
-                                }
-                            )
+                                },
+                            })
 
                             AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
                         }
