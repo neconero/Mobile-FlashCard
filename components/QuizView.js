@@ -13,18 +13,10 @@ class QuizView extends React.Component {
         cardIndex: 0,
         correct: 0,
         incorrect: 0,
-        showAnswer: false,
         length: this.props.deck.questions.length,
         completed: false,
     }
 
-    
-
-    toggleAnswer = () => {
-        this.setState({
-            showAnswer: true,
-        })
-    }
 
     selectedAnswer = (choice) => {
         let {correct, incorrect, length, cardIndex} = this.state
