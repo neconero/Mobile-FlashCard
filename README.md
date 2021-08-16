@@ -1,6 +1,8 @@
 # Mobile Flash Cards
 
-The mobile app enables user to select a deck from the list of decks. User can add Card to a deck, create a new deck, complete a quiz from a selected deck. App was built with react-native
+The mobile app enables user to select a deck from the list of decks. User can add Card to a deck, create a new deck, complete a quiz from a selected deck. App was built with react-native.
+
+The react native application has been tested on iOS 12.5.4 on Iphone 6 device.
 
 ## Available Scripts
 
