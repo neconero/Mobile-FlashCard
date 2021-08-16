@@ -1,9 +1,17 @@
 import React from 'react'
-import {View, Text} from 'react-native'
+import {View, Text, StyleSheet} from 'react-native'
 import {Button} from 'react-native-paper'
 import {connect} from 'react-redux'
+import {lavender} from '../utils/colours'
 import QuizCard from './QuizCard'
 import Reset from './Reset'
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: lavender
+    }
+})
 
 class QuizView extends React.Component {
     state ={

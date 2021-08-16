@@ -1,9 +1,39 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { KeyboardAvoidingView} from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, View, Pressable, Text } from 'react-native'
 import {addCard} from '../actions/index'
-import {addCardToDeck} from '../utils/api'
-import {TextInput, Button} from 'react-native-paper'
+//import {addCardToDeck} from '../utils/api'
+import {TextInput} from 'react-native-paper'
+import {lavender, white, black} from '../utils/colours'
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: lavender,
+    },
+    input:{
+        height: 40,
+        margin: 12,
+        borderWidth: 1, 
+        padding: 10,
+    },
+    iosButton:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        borderRadius: 4,
+        elevation: 3,
+        marginVertical: 10,
+    },
+    text:{
+        color: white,
+        fontSize: 16,
+        lineHeight: 21,
+        textAlign: 'center',
+        fontWeight: 'bold', 
+    }
+})
 
 class AddCard extends React.Component {
     state = {
@@ -31,8 +61,8 @@ class AddCard extends React.Component {
         //Update redux
         dispatch(addCard(title, card))
 
-        //storage
-        addCardToDeck(title, card)
+        // //storage
+        // addCardToDeck(title, card)
 
         navigation.navigate('DeckView', {title})
 
@@ -42,25 +72,38 @@ class AddCard extends React.Component {
     render() {
         const {answer, question} = this.state
         return (
-            <KeyboardAvoidingView behavior='padding'>
-                <TextInput 
-                    label='Question'
-                    value={question}
-                    onChangeText={this.handleQuestionChange}
-                />
-                <TextInput 
-                    label='Answer'
-                    value={answer}
-                    onChangeText={this.handleAnsChange}
-                />
-                <Button
-                    disabled={answer === '' || question === ''}
-                    onPress={this.handleSubmit}
-                >
-                    Add Card
-                </Button>
-            </KeyboardAvoidingView>
-            
+            <View style={styles.container}>
+                <KeyboardAvoidingView  behavior='padding'>
+                    <View>
+                        <TextInput 
+                            style={styles.input}
+                            label='Question'
+                            value={question}
+                            onChangeText={this.handleQuestionChange}
+                        />
+                        <TextInput 
+                            style={styles.input}
+                            label='Answer'
+                            value={answer}
+                            onChangeText={this.handleAnsChange}
+                        />
+                    </View>
+                    <View style={{alignSelf: 'center'}}>
+                        <Pressable
+                            disabled={answer === '' || question === ''}
+                            onPress={this.handleSubmit}
+                            style={[styles.iosButton, {backgroundColor: black}]}
+                        >
+                            <Text
+                                style={styles.text}
+                            >
+                                Submit
+                            </Text>
+                        </Pressable>
+                    </View>
+                    
+                </KeyboardAvoidingView>
+            </View>   
         )
     }  
 }

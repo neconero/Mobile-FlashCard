@@ -4,7 +4,7 @@ import TabNavigator from './BottomTab'
 import DeckView from '../components/DeckView'
 import QuizView from '../components/QuizView'
 import AddCard from '../components/AddCard'
-import {purple} from '../utils/colours'
+import {purple, white} from '../utils/colours'
 
 const screenStack = createStackNavigator()
 
@@ -14,7 +14,16 @@ const ScreenStackNavigator = () => {
             <screenStack.Screen 
                 name='Home'
                 component={TabNavigator}
-                
+                options={{
+                    title: 'Home',
+                    headerStyle: {
+                        backgroundColor: purple,
+                      },
+                      headerTintColor: white,
+                      headerTitleStyle: {
+                        fontWeight: 'bold',
+                      },
+                }}
             />
             <screenStack.Screen 
                 name='DeckView'
@@ -24,7 +33,7 @@ const ScreenStackNavigator = () => {
                     headerStyle: {
                         backgroundColor: purple,
                       },
-                      headerTintColor: '#fff',
+                      headerTintColor: white,
                       headerTitleStyle: {
                         fontWeight: 'bold',
                       },
@@ -33,12 +42,30 @@ const ScreenStackNavigator = () => {
             <screenStack.Screen 
                 name='AddCard'
                 component={AddCard}
-                options={{title: 'AddCard'}}
+                options={{
+                    title: 'Add Card',
+                    headerStyle: {
+                        backgroundColor: purple,
+                      },
+                      headerTintColor: white,
+                      headerTitleStyle: {
+                        fontWeight: 'bold',
+                      },
+                }}
             />
             <screenStack.Screen 
                 name='QuizView'
                 component={QuizView}
-                options={{title: 'Quiz'}}
+                options={{
+                    title: 'Quiz',
+                    headerStyle: {
+                        backgroundColor: purple,
+                      },
+                      headerTintColor: white,
+                      headerTitleStyle: {
+                        fontWeight: 'bold',
+                      },
+                }}
             />
         </screenStack.Navigator>
     )

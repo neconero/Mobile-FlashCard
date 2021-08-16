@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native'
+
 
 export const greybrown = '#3D3635'
 export const white = '#fff'
@@ -12,22 +12,5 @@ export const pink = '#b93fb3'
 export const black = '#000'
 export const lavender = '#d6cadd'
 
-export const appStyles = StyleSheet.create({
-    scrollContainer: {
-        flex: 1,
-        backgroundColor: greybrown,
-    },
-    title: {
-        textAlign: 'center',
-        fontSize: 10,
-        marginBottom: 20,
-        marginTop: 20,
-        color: white,
-    },
-    card: {
-        margin: 10,
-        backgroundColor: orange,
-        borderRadius: 10
-    }
-})
+
 

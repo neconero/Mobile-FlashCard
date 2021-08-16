@@ -1,8 +1,48 @@
 import React, { Component} from 'react'
-import {Text, KeyboardAvoidingView, View} from 'react-native'
+import {Text, KeyboardAvoidingView, View, StyleSheet, Pressable} from 'react-native'
 import {handleNewDeck} from '../actions/index'
 import {connect} from 'react-redux'
-import {TextInput, Button} from 'react-native-paper'
+import {TextInput} from 'react-native-paper'
+import {black, lavender, white} from '../utils/colours'
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: lavender,
+    },
+    text:{
+        color: black,
+        fontSize: 16,
+        lineHeight: 21,
+        textAlign: 'center',
+        fontWeight: 'bold', 
+        marginTop: 50,
+    },
+    input:{
+        height: 40,
+        margin: 12,
+        borderWidth: 1, 
+        padding: 10,
+        marginTop: 80,
+    },
+    iosButton:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        borderRadius: 4,
+        elevation: 3,
+        marginVertical: 10,
+    },
+    textBtn:{
+        color: white,
+        fontSize: 16,
+        lineHeight: 21,
+        textAlign: 'center',
+        fontWeight: 'bold',  
+    },
+})
 
 class NewDeck extends Component {
     state = {
@@ -29,21 +69,31 @@ class NewDeck extends Component {
     render() {
         const {deckTitle} = this.state
         return (
-            <View>
+            <View style={styles.container}>
                 <KeyboardAvoidingView>
-                    <Text>What is the title of your new deck?</Text>
-                    <TextInput 
-                        label=''
-                        value={deckTitle}
-                        onChangeText={this.handleInputChange}
-                    />
-                    <Button 
-                        disabled={deckTitle === ''}
-                        onPress={this.handleSubmit}
-                    >
-                        Add Deck
-                    </Button>
+                    <View>
+                        <Text style={styles.text}>What is the title of your new deck?</Text>
+                        <TextInput 
+                            label=''
+                            value={deckTitle}
+                            onChangeText={this.handleInputChange}
+                            style={styles.input}
+                        />
+                    </View>   
                 </KeyboardAvoidingView>
+                <View style={{alignSelf: 'center'}}>
+                        <Pressable
+                            disabled={deckTitle === ''}
+                            onPress={this.handleSubmit}
+                            style={[styles.iosButton, {backgroundColor: black}]}
+                        >
+                            <Text
+                                style={styles.textBtn}
+                            >
+                                Add Deck
+                            </Text>
+                        </Pressable>
+                </View>
             </View>  
         )
     }
